@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Number Finder</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 40px;
+}
+
+input, button{
+    font-size:18px;
+    padding:8px;
+    margin:10px;
+}
+
+#result{
+    margin-top:20px;
+    font-size:20px;
+    white-space:pre-line;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Find Your Lucky Number</h1>
+
+<p>Select your Date of Birth.</p>
+
+<input type="date" id="dob">
+
+<br>
+
+<button onclick="findLuckyNumber()">
+Find Lucky Number
+</button>
+
+<p id="result"></p>
+
+<script>
+
+function findLuckyNumber() {
+
+    // Read the date of birth
+    let dob = document.getElementById("dob").value;
+
+    // Check whether the user selected a date
+    if (dob == "") {
+        document.getElementById("result").textContent =
+        "Please select your Date of Birth.";
+        return;
+    }
+
+    // Remove the hyphens
+    let digits = dob.replace(/-/g, "");
+
+    // Add all digits
+    let total = 0;
+
+    for (let digit of digits) {
+        total = total + Number(digit);
+    }
+
+    // Reduce to a single digit
+    while (total > 9) {
+
+        let sum = 0;
+
+        while (total > 0) {
+
+            sum = sum + (total % 10);
+
+            total = Math.floor(total / 10);
+        }
+
+        total = sum;
+    }
+
+    // Predictions
+    const prediction = {
+
+        1: "Lucky Number 1\n\nYou are a natural leader. Today is a good day to begin a new task. Have confidence in yourself and success will follow.",
+
+        2: "Lucky Number 2\n\nPeace and cooperation are your strengths. Be patient and avoid unnecessary arguments. Good news may come from family or friends.",
+
+        3: "Lucky Number 3\n\nCreativity is your greatest gift. Express your ideas freely. This is a favourable day for learning and communication.",
+
+        4: "Lucky Number 4\n\nHard work and discipline will bring rewards. Keep working steadily. Your efforts will not go unnoticed.",
+
+        5: "Lucky Number 5\n\nToday may bring pleasant surprises. Be open to new experiences. Travel or meeting new people may prove beneficial.",
+
+        6: "Lucky Number 6\n\nLove, family and responsibility are highlighted. Spend time with those who care for you. Your kindness will be appreciated.",
+
+        7: "Lucky Number 7\n\nThis is an excellent day for study, meditation and self-reflection. Trust your intuition while making important decisions.",
+
+        8: "Lucky Number 8\n\nFinancial matters look promising. Stay practical and disciplined. A good opportunity may come your way.",
+
+        9: "Lucky Number 9\n\nCompassion and generosity will bring happiness. Helping others today may return unexpected blessings."
+    };
+
+    // Display the result
+    document.getElementById("result").textContent =
+    "Your Lucky Number is: " + total + "\n\n" +
+    prediction[total] +
+    "\n\n(This program is based on a simple numerology calculation and is meant for entertainment.)";
+
+}
+
+</script>
+
+</body>
+</html>
