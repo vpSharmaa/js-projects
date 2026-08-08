@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
@@ -17,130 +15,85 @@
 --------------------------- */
 
 body{
-
     font-family:Arial, sans-serif;
-
     background:#f4f4f4;
-
     margin:40px;
-
 }
-
 
 /* --------------------------
    Main Container
 --------------------------- */
 
 .container{
-
     width:700px;
-
     margin:auto;
-
     background:white;
-
     padding:25px;
-
     border-radius:10px;
-
     box-shadow:0 0 10px gray;
-
 }
-
 
 /* --------------------------
    Heading
 --------------------------- */
 
 h1{
-
     text-align:center;
-
     color:darkblue;
-
 }
-
 
 /* --------------------------
    Labels
 --------------------------- */
 
 label{
-
     display:block;
-
     margin-top:15px;
-
     font-weight:bold;
-
 }
-
 
 /* --------------------------
    Text Boxes
 --------------------------- */
 
 input{
-
     width:100%;
-
     padding:8px;
-
     font-size:16px;
-
     box-sizing:border-box;
-
 }
-
 
 /* --------------------------
    Buttons
 --------------------------- */
 
 button{
-
     margin-top:20px;
-
     padding:10px 20px;
-
     font-size:16px;
-
     cursor:pointer;
-
 }
-
 
 /* --------------------------
    Result Area
 --------------------------- */
 
 #result{
-
     display:none;
-
     margin-top:25px;
-
     padding:20px;
-
     background:#eef;
-
     border-radius:8px;
-
     white-space:pre-line;
-
     font-size:18px;
-
 }
-
 
 /* --------------------------
    Back Button
 --------------------------- */
 
 #backBtn{
-
     display:none;
-
 }
 
 </style>
@@ -148,54 +101,38 @@ button{
 </head>
 
 <body>
-
 <div class="container">
-
 <h1>🌟 Lucky Number Finder 🌟</h1>
-
 
 <!-- ==========================
      Input Form
 ========================== -->
 
 <div id="formArea">
-
 <label>Your Name</label>
-
 <input
 type="text"
 id="name">
-
-
 <label>Place of Birth</label>
 
 <input
 type="text"
 id="place">
-
-
 <label>Date of Birth</label>
 
 <input
 type="date"
 id="dob">
 
-
 <button onclick="findLuckyNumber()">
-
 Find Lucky Number
-
 </button>
 
-
 <button onclick="retry()">
-
 Retry
-
 </button>
 
 </div>
-
 
 <!-- ==========================
      Result Area
@@ -204,44 +141,32 @@ Retry
 <div id="result">
 
 </div>
-
-
 <br>
 
 <button
 id="backBtn"
 onclick="goBack()">
-
 ← Back
-
 </button>
-
 </div>
 
 <script>
 /* ==========================================
    Lucky Number Finder
-   Version 3.0
+   Version 2.0
    Designed and developed by Vedprakash Sharma
 ========================================== */
-
 
 /* ------------------------------------------
    Get references to the HTML elements
 ------------------------------------------- */
 
 const nameBox = document.getElementById("name");
-
 const placeBox = document.getElementById("place");
-
 const dobBox = document.getElementById("dob");
-
 const formArea = document.getElementById("formArea");
-
 const result = document.getElementById("result");
-
 const backBtn = document.getElementById("backBtn");
-
 
 /* ------------------------------------------
    Find Lucky Number
@@ -249,118 +174,69 @@ const backBtn = document.getElementById("backBtn");
 
 function findLuckyNumber(){
 
-
     /* Read the values entered by the user */
 
     let name = nameBox.value.trim();
-
     let place = placeBox.value.trim();
-
     let dob = dobBox.value;
-
-
 
     /* Check that all fields are filled */
 
     if(name == ""){
-
         alert("Please enter your name.");
-
         nameBox.focus();
-
         return;
-
     }
-
 
     if(place == ""){
-
         alert("Please enter your place of birth.");
-
         placeBox.focus();
-
         return;
-
     }
-
 
     if(dob == ""){
-
         alert("Please select your date of birth.");
-
         dobBox.focus();
-
         return;
-
     }
-
-
 
     /* ----------------------------------
        Calculate Lucky Number
     ----------------------------------- */
 
     let digits = dob.replace(/-/g,"");
-
-
     let total = 0;
-
-
     for(let digit of digits){
-
         total = total + Number(digit);
-
     }
-
-
 
     /* Convert to a single digit */
 
     while(total > 9){
-
         let sum = 0;
 
-
         while(total > 0){
-
             sum = sum + (total % 10);
-
             total = Math.floor(total / 10);
-
         }
 
-
         total = sum;
-
     }
-
-
 
     /* ----------------------------------
        Find Day of Birth
     ----------------------------------- */
 
     let date = new Date(dob);
-
-
     let days = [
-
         "Sunday",
-
         "Monday",
-
         "Tuesday",
-
         "Wednesday",
-
         "Thursday",
-
         "Friday",
-
         "Saturday"
-
     ];
-
 
     let birthDay = days[date.getDay()];
     /* ----------------------------------
@@ -368,95 +244,55 @@ function findLuckyNumber(){
     ----------------------------------- */
 
     const luckyPrediction = {
-
         1 : "As your lucky number, you prove to be number one under most circumstances. You are a born leader. Today is favourable for taking initiative and beginning something new.",
-
         2 : "You are a cool person. Do not get carried away by anger or excitement. Peace and patience will guide you. Good relationships will bring happiness.",
-
         3 : "You are an innovator. Creativity is your strength. Express yourself confidently today.",
-
         4 : "There is no shortcut to hard work. Hard work and discipline will produce success. Continue your efforts.",
-
         5 : "Pleasant surprises await you. Exciting opportunities may come unexpectedly. Keep an open mind.",
-
         6 : "Be in touch with your friends and loved ones. Family, love and responsibility are highlighted today.",
-
         7 : "Be calm and look inwards. Today is a good day for study, meditation and self-improvement.",
-
         8 : "Time to be happy. Let your worries go for a while. Financial progress is indicated. Stay practical and confident.",
-
         9 : "Helping others will bring you satisfaction and inner peace."
     };
-
-
 
     /* ----------------------------------
        Day Predictions
     ----------------------------------- */
 
     const dayPrediction = {
-
         Sunday : "Today is a good day to relax and spend time with family.",
-
         Monday : "A good day for planning and starting new work.",
-
         Tuesday : "Energy and determination will help you overcome challenges.",
-
         Wednesday : "Communication and learning are favoured today.",
-
         Thursday : "A suitable day for gaining knowledge and helping others.",
-
         Friday : "Love, friendship and creativity are highlighted today.",
-
         Saturday : "Patience and discipline will bring success."
-
     };
-
-
 
     /* ----------------------------------
        Display the Result
     ----------------------------------- */
 
     result.textContent =
-
-    "Hello, " + name + "!\n\n" +
-
+    "Hello, " +name +"!\n\n" +
     "Welcome to the Lucky Number Finder.\n" +
-
     "Your lucky day and lucky number are shown below.\n" +
-
     "We hope you enjoy reading your personalized prediction.\n\n" +
-
     "Name : " + name +
-
     "\n\nPlace of Birth : " + place +
-
     "\n\nDate of Birth : " + dob +
-
     "\n\nDay of Birth : " + birthDay +
-
     "\n\nDay Prediction\n\n" +
-
     dayPrediction[birthDay] +
-
     "\n\n⭐ Your Lucky Number is : " +
-
     total +
-
     "\n\nLucky Number Prediction\n\n" +
-
     luckyPrediction[total] +
-
     "\n\n-------------------------------------------" +
 
     "\nThank you for using Lucky Number Finder." +
-
     "\nDesigned and developed by Vedprakash Sharma." +
-
     "\n\nThis Lucky Number Finder is based on a simple numerology calculation and is intended for entertainment purposes only.";
-
-
 
     /* ----------------------------------
        Hide the form
@@ -465,57 +301,41 @@ function findLuckyNumber(){
     ----------------------------------- */
 
     formArea.style.display = "none";
-
     result.style.display = "block";
-
     backBtn.style.display = "inline-block";
-
-}      // End of findLuckyNumber()
+}
+      // End of findLuckyNumber()
 /* ------------------------------------------
    Retry Button
 ------------------------------------------- */
 
 function retry(){
-
     nameBox.value = "";
-
     placeBox.value = "";
-
     dobBox.value = "";
-
     result.textContent = "";
-
     nameBox.focus();
-
 }
-
-
 
 /* ------------------------------------------
    Back Button
 ------------------------------------------- */
 
 function goBack(){
-
     /* Clear all previous values */
 
     retry();
 
-
     /* Show the form again */
 
     formArea.style.display = "block";
-
-
     /* Hide the result */
 
     result.style.display = "none";
 
-
     /* Hide the Back button */
 
     backBtn.style.display = "none";
-
 }
 
 </script>
